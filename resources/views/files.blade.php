@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>ID</th>
@@ -19,20 +19,26 @@
             <td>{{ $file->sizeInKb }} KB</td>
             <td>{{ $file->extension }}</td>
             <td>
-                <a href="{{ $file->public_url }}" target="_blank">
-                    Enlace público
-                </a>
-                <a href="{{ route('files.download', $file) }}">
-                    Descargar
-                </a>
-                <form action="{{ route('files.destroy', $file) }}" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button type="submit">Eliminar</button>
-                </form>
+
+                <div class="file-actions">
+                    <a href="{{ $file->public_url }}" class="btn btn-primary file-actions-spaces" target="_blank">
+                        URL
+                    </a>
+
+                    <a href="{{ route('files.download', $file) }}" class="btn btn-success file-actions-spaces">
+                        Descargar
+                    </a>
+
+                    <form name="delete-form" onsubmit="event.preventDefault();confirmDelete()" action="{{ route('files.destroy', $file) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger file-actions-spaces">Borrar</button>
+                    </form>
+                </div>
             </td>
         </tr>
         @endforeach
+
     </tbody>
 </table>
 
@@ -46,14 +52,5 @@
     @csrf
 </form>
 
-<script src="{{ asset('js/dropzone.js') }}"></script>
-<script src="{{ asset('js/dropscript.js') }}"></script>
-<link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
-<script>
-    var msg = '{{Session::get('alert')}}';
-    var exist = '{{Session::has('alert')}}';
-    if(exist){
-      alert(msg);
-    }
-</script>
+@include('fileres')
 @endsection
