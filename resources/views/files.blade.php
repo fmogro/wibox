@@ -45,7 +45,15 @@
 <form action="{{ route('files.store') }}" method="POST" enctype="multipart/form-data" class="dropzone" id="dropZoneJS">
     @csrf
 </form>
+
 <script src="{{ asset('js/dropzone.js') }}"></script>
 <script src="{{ asset('js/dropscript.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
+<script>
+    var msg = '{{Session::get('alert')}}';
+    var exist = '{{Session::has('alert')}}';
+    if(exist){
+      alert(msg);
+    }
+</script>
 @endsection

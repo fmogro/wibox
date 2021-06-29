@@ -9,6 +9,8 @@
 </head>
 
 <body>
+  @include('partials.menu.nav')
+
   @yield('content')
 </body>
 

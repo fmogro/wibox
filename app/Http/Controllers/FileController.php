@@ -29,6 +29,7 @@ class FileController extends Controller
 
     /**
      * Store a newly created File in storage.
+     * Receive File on $request
      * Save a file on the specified driver using putFileAs method
      *
      * @return back
@@ -83,11 +84,8 @@ class FileController extends Controller
             $this->dropbox->delete($file->name);
             $file->delete();
         }else{
-            echo "<script>";
-            echo "alert('hello');";
-            echo "</script>";
             $file->delete();
-            //return redirect()->back()->with('alert','File not found on Dropbox');
+            return redirect()->back() ->with('alert', 'File not found on Dropbox!');
         }
         return back();
     }
