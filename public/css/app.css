@@ -10011,3 +10011,11 @@ h3 {
 .file-actions-spaces {
   margin-right: 10px;
 }
+
+.badge-counter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 1.1em;
+  margin: 20px;
+}

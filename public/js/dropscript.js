@@ -7,10 +7,10 @@ Dropzone.options.dropZoneJS = {
             setTimeout(function () {
                 th.removeAllFiles();
                 location.reload();
-            }, 3000);
+            }, 1500);
         });
     },
     paramName: "file",
-    maxFilesize: 2,
+    maxFilesize: 1,
     acceptedFiles: "image/*",
 };
