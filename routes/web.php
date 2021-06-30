@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +19,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', 'FileController@index')->name('files.index');
-Route::post('/files', 'FileController@store')->name('files.store');
-Route::delete('/files/{file}', 'FileController@destroy')->name('files.destroy');
-Route::get('/files/{file}/download', 'FileController@download')->name('files.download');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+    Route::get('/', 'FileController@index')->name('files.index');
+    Route::post('/files', 'FileController@store')->name('files.store');
+    Route::delete('/files/{file}', 'FileController@destroy')->name('files.destroy');
+    Route::get('/files/{file}/download', 'FileController@download')->name('files.download');
+});
