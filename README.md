@@ -56,11 +56,12 @@ The way to use it is very simple, first use the user and password created on **_
 
 The application uses php and the view controller model provided by Laravel.
 
-Two libraries were used for roles and one library for the use of Dropbox
+Two libraries were used for roles, one library for the use of Dropbox and the last one was used to translate Laravel native message to spanish
 
        laravelcollective/html
        spatie/flysystem-dropbox
        spatie/laravel-permission
+       laradevs/spanish
 
 To avoid mixing technologies, VueJs were not used for the views, in this case they used the native ones and the classic Laravel Blades.
 
